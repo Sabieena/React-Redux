@@ -40,7 +40,7 @@ const fetchUsers = () => {
         dispatch(fetchUserRequest())
         axios.get('https://jsonplaceholder.typicode.com/users')
         .then(response => {
-            const users = response.data.map(user => user.id)
+            const users = response.data.map(user => user.name)
             dispatch(fetchUserSuccess(users))
         })
         .catch(error => {
@@ -64,7 +64,7 @@ const reducer = (state = initialState, action) => {
                 users: action.payload,
                 error: ''
             }
-        case FETCH_USER_SUCCESS:
+        case FETCH_USER_FAILURE:
             return {
                 ...state,
                 loading: false,
